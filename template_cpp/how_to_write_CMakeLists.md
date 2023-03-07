@@ -1,9 +1,8 @@
----
-# marp: true
-# marp: false
+<!-- ---
+marp: true
 backgroundColor: #fff
 paginate: true
----
+--- -->
 
 ## How to write CMakeLists.txt with using mujoco
 

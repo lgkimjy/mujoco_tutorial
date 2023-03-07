@@ -1,9 +1,9 @@
-<!-- ---
+---
 # marp: true
-marp: false
+# marp: false
 backgroundColor: #fff
 paginate: true
---- -->
+---
 
 ## How to write CMakeLists.txt with using mujoco
 
@@ -11,15 +11,15 @@ paginate: true
 
 ### Make a personal project directory.
 ```bash
-$ mkdir PROJECT_NAME 
+$ mkdir PROJECT_NAME
 ```
 
 ---
-### Clone needed library ( mujoco )
+### Clone MuJoCo
 1. Make a library folder
 
     ```bash
-    $ mkdir lib src include
+    $ mkdir lib
     ```
 2. Clone deepmind/mujoco repository in PROJECT lib folder.
 3. Make a build directory in mujoco repository, ```mkdir build```.
@@ -42,11 +42,9 @@ PROJECT_NAME/
 │   ├── mujoco
 │   └── glfw
 ├── include
-│   ├── test1.hpp
-│   └── test2.hpp
+│   └── test.hpp
 └── src
-    ├── test1.cpp
-    ├── test2.cpp
+    ├── test.cpp
     └── main.cpp    
 ```
 ---
@@ -74,7 +72,12 @@ add_definitions(-std=c++17)
 find_package(mujoco)
 find_package(glfw3)
 
-add_executable(${PROJECT_NAME} src/main.cpp src/test1.cpp src/test2.cpp)
+include_directories(
+    include
+    INCLUDE_DIRS include
+    LIBRARIES ${PROJECT_NAME}
+)
+add_executable(${PROJECT_NAME} src/main.cpp src/test.cpp)
 target_link_libraries(${PROJECT_NAME} mujoco::mujoco glfw)
 ```
 
